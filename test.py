@@ -146,3 +146,34 @@ def posthelp(root: Node, list): # L R root
         posthelp(root.leftchild, list)
         posthelp(root.rightchild, list)
         list.append(root.key)
+
+# For the tree rooted at root, find the postorder traversal.
+# Return the json.dumps of the list with indent=2.
+def postorder(root: Node) -> str:
+    list = []
+    posthelp(root, list)
+   
+    return(json.dumps(list, indent=2))
+
+# For the tree rooted at root, find the BFT traversal (go left-to-right).
+# Return the json.dumps of the list with indent=2.
+def bft(root: Node) -> str: # aka level order traversal
+    list = []
+    queue = [root]
+
+    while queue: 
+        # remove first node from queue, in beginning: root value
+        curr = queue.pop(0)
+
+        # add dequeued node to list
+        list.append(curr.key)
+
+        # enqueue left node
+        if curr.leftchild != None:
+            queue.append(curr.leftchild)
+
+        # enqueue right node
+        if curr.rightchild != None:
+            queue.append(curr.rightchild)
+
+    return(json.dumps(list, indent=2))
