@@ -146,3 +146,11 @@ def posthelp(root: Node, list): # L R root
         posthelp(root.leftchild, list)
         posthelp(root.rightchild, list)
         list.append(root.key)
+
+# For the tree rooted at root, find the postorder traversal.
+# Return the json.dumps of the list with indent=2.
+def postorder(root: Node) -> str:
+    list = []
+    posthelp(root, list)
+   
+    return(json.dumps(list, indent=2))
